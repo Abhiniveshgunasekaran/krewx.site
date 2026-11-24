@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get KrewX</title>
+  <meta name="description" content="Get the KrewX app for iPhone or Android: krew rides, live convoy tracking and SOS for riders.">
+  <!-- Link preview in WhatsApp and other messengers (user, 2026-11-19): the logo, no
+       "plan . ride . connect". krewx-share.png comes from ops/share-image/share-image.html. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KrewX">
+  <meta property="og:title" content="KrewX">
+  <meta property="og:description" content="Get the app for iPhone or Android.">
+  <meta property="og:url" content="https://krewx.app/get">
+  <meta property="og:image" content="https://krewx.app/krewx-share.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* The app's download link (https://krewx.app/get), sent in invites from the app.
+       A phone goes straight to its store once the store links are set below. */
+    :root {
+      --primary: #C1121F;
+      --bg: #ffffff;
+      --card: #f6f6f7;
+      --text: #111114;
+      --muted: #5b5b66;
+      color-scheme: light dark;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0b0b0c; --card: #18181b; --text: #f4f4f5; --muted: #a1a1aa; }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px 16px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+    }
+    main { width: 100%; max-width: 440px; background: var(--card); border-radius: 24px; padding: 32px 24px; text-align: center; }
+    .logo { width: 220px; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 16px; }
+    h1 { margin: 16px 0 8px; font-size: 22px; line-height: 1.3; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 15px; }
+    .store {
+      display: block;
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .note { margin-top: 18px; font-size: 13px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="/krewx-share.png" alt="KrewX">
+    <h1>Get KrewX</h1>
+    <p>Group rides, live convoy tracking and SOS for riders.</p>
+    <a class="store hidden" id="ios" href="#">Download on the App Store</a>
+    <a class="store hidden" id="android" href="#">Get it on Google Play</a>
+    <p class="note hidden" id="soon">KrewX arrives on the App Store and Google Play on 1 December 2026. Keep this link: it will take you to the app.</p>
+  </main>
+  <script>
+    (function () {
+      // Fill these once the apps are published; until then the page says when they arrive.
+      var IOS_URL = '';
+      var ANDROID_URL = '';
+      var ua = navigator.userAgent || '';
+      var isIos = /iPhone|iPad|iPod/i.test(ua);
+      var isAndroid = /Android/i.test(ua);
+      if (isIos && IOS_URL) { location.replace(IOS_URL); return; }
+      if (isAndroid && ANDROID_URL) { location.replace(ANDROID_URL); return; }
+      var shown = false;
+      if (IOS_URL && !isAndroid) { var a = document.getElementById('ios'); a.href = IOS_URL; a.classList.remove('hidden'); shown = true; }
+      if (ANDROID_URL && !isIos) { var b = document.getElementById('android'); b.href = ANDROID_URL; b.classList.remove('hidden'); shown = true; }
+      if (!shown) document.getElementById('soon').classList.remove('hidden');
+    })();
+  </script>
+</body>
+</html>
